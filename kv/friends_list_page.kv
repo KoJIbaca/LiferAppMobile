@@ -1,0 +1,29 @@
+<FriendsListPage>
+    MDScreen:
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 10
+            adaptive_size: True
+            canvas:
+                Color:
+                    rgba: 255/255, 255/255, 255/255, 1
+                Rectangle:
+                    source: "./Images/main_background.jpg"
+                    size: self.size
+                    pos: self.pos
+            MDFabButton:
+                id: back_button
+                icon: "arrow-left-bold-outline"
+                theme_icon_color: 'Custom'
+                icon_color: 'black'
+                style: "small"
+                pos_hint: {'center_x': .1, 'center_y': .5}
+                on_release: root.back_to_profile_page()
+
+
+            MDScrollView:
+                id:scroll
+
+                MDList:
+                    id: lists

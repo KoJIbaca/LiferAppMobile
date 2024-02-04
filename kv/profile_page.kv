@@ -1,0 +1,251 @@
+<ProfilePage>
+
+    FloatLayout:
+
+        Widget:
+            size_hint: 1, .47
+            pos_hint: {'top': 1, 'left': .5}
+            opacity: 1
+            canvas:
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: './profile/photos/profile_photo_2.jpg'
+
+        ScrollView:
+            effect_cls: 'ScrollEffect'
+
+            BoxLayout:
+                orientation: 'vertical'
+                size: (self.parent.width, self.parent.height-1)
+                size_hint_y: None
+                height: self.minimum_height
+
+                FloatLayout:
+                    Widget:
+                        size_hint: 1, .65
+                        pos_hint: {'center_x': .5, 'center_y': 0.3}
+                        opacity: 1
+                        canvas:
+                            Color:
+                                rgba: 1, 1, 1, 1
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+
+                    MDLabel:
+                        text: 'Имя'
+                        bold: True
+                        pos_hint: {'top': .62, 'left': .5}
+                        font_style: 'Display'
+                        role: "medium"
+                        theme_text_color: 'Custom'
+                        text_color: 'black'
+                        padding: 10
+                        adaptive_height: True
+                    MDLabel:
+                        text: 'Фамилия'
+                        bold: True
+                        pos_hint: {'top': .57, 'left': .5}
+                        adaptive_height: True
+                        padding: 10
+                        font_style: 'Headline'
+                        role: "large"
+
+
+                    Widget:
+                        size_hint: .39, .17
+                        pos_hint: {'center_x': .8, 'center_y': .65}
+                        opacity: 1
+                        canvas:
+                            Color:
+                                rgba: 1, 1, 1, 1
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [40]
+                    FitImage:
+                        source: './profile/photos/profile_photo.jpg'
+                        size_hint: .35, .15
+                        pos_hint: {"center_x": .8, 'center_y': .65}
+                        radius: [40]
+
+                    MDButton:
+                        id: location_button
+                        style: 'text'
+                        adaptive_width: True
+                        pos_hint: {'center_x': .2, 'center_y': .5}
+                        MDButtonIcon:
+                            icon: 'map-marker'
+                        MDButtonText:
+                            text: 'Россия, г. Москва'
+                            theme_text_color: 'Custom'
+                            text_color: 'grey'
+
+
+                    MDButton:
+                        style: 'text'
+                        pos_hint: {'center_x': .13, 'center_y': .47}
+                        MDButtonText:
+                            text: f'Возраст: {root.age()}'
+                            theme_text_color: 'Custom'
+                            text_color: 'grey'
+
+                    Widget:
+                        size_hint: .85, .13
+                        pos_hint: {'center_x': .5, 'center_y': .38}
+                        opacity: .7
+                        canvas:
+                            Color:
+                                rgba: 124/255, 64/255, 245/255, 1
+                            RoundedRectangle:
+                                radius: [25]
+                                pos: self.pos
+                                size: self.size
+
+                    MDFabButton:
+                        id: friends_button
+                        icon: "account-group"
+                        theme_icon_color: 'Custom'
+                        icon_color: 'black'
+                        style: "standard"
+                        pos_hint: {'center_x': .23, 'center_y': .38}
+                        on_release: root.friends_page_open()
+                    MDLabel:
+                        text: f'{root.friends_number()}'
+                        pos_hint: {'center_x': .23, 'center_y': .36}
+
+                    MDFabButton:
+                        id: messages_button
+                        icon: "email"
+                        theme_icon_color: 'Custom'
+                        icon_color: 'black'
+                        style: "standard"
+                        pos_hint: {'center_x': .5, 'center_y': .38}
+
+                    MDFabButton:
+                        id: news_button
+                        icon: "newspaper-variant"
+                        theme_icon_color: 'Custom'
+                        icon_color: 'black'
+                        style: "standard"
+                        pos_hint: {'center_x': .77, 'center_y': .38}
+
+                    MDButton:
+                        pos_hint: {'center_x': .5, 'center_y': 0}
+                        MDButtonText:
+                            text: 'fsdfs'
+
+
+        MDNavigationLayout:
+
+            MDNavigationDrawer:
+                id: nav_drawer
+                radius: 0, dp(16), dp(16), 0
+                anchor: "left"
+
+                MDNavigationDrawerMenu:
+
+                    MDNavigationDrawerLabel:
+                        text: "Имя Фамилия"
+                        bold: True
+
+                    MDNavigationDrawerItem:
+                        on_release:
+                            nav_drawer.set_state(new_state='close')
+
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "account"
+
+                        MDNavigationDrawerItemText:
+                            text: "Моя страница"
+
+                    MDNavigationDrawerItem:
+
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "email"
+
+                        MDNavigationDrawerItemText:
+                            text: "Мои сообщения"
+
+                    MDNavigationDrawerItem:
+                        on_release:
+                            root.friends_page_open()
+                            nav_drawer.set_state(new_state='close')
+
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "account-group"
+
+                        MDNavigationDrawerItemText:
+                            text: "Мои друзья"
+
+                    MDNavigationDrawerItem:
+
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "newspaper"
+
+                        MDNavigationDrawerItemText:
+                            text: "Новости"
+
+                    MDNavigationDrawer:
+
+                    MDNavigationDrawerItem:
+
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "guitar-electric"
+
+                        MDNavigationDrawerItemText:
+                            text: "Музыка"
+
+                    MDNavigationDrawerItem:
+
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "controller"
+
+                        MDNavigationDrawerItemText:
+                            text: "Игры"
+
+                    MDNavigationDrawerItem:
+
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "video"
+
+                        MDNavigationDrawerItemText:
+                            text: "Видео интересы"
+
+                    MDNavigationDrawerItem:
+
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "camera"
+
+                        MDNavigationDrawerItemText:
+                            text: "Фотографии"
+
+                    MDNavigationDrawerItem:
+
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "book"
+
+                        MDNavigationDrawerItemText:
+                            text: "Литература"
+
+                    MDNavigationDrawerItem:
+
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "shopping"
+
+                        MDNavigationDrawerItemText:
+                            text: "Предложения сообщества"
+
+                    MDNavigationDrawer:
+
+                    MDNavigationDrawerItem:
+                        on_release:
+                            root.back_to_login_page()
+                            nav_drawer.set_state(new_state='close')
+
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "logout"
+
+                        MDNavigationDrawerItemText:
+                            text: "Выйти"

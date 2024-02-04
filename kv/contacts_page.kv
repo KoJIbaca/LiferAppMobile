@@ -1,0 +1,72 @@
+<ContactsPage>
+
+    FloatLayout:
+        orientation: 'vertical'
+        spacing: 20
+        canvas:
+            Rectangle:
+                source: "./images/feedback_background.jpg"
+                size: self.size
+                pos: self.pos
+
+        MDButton:
+            radius: 10
+            theme_bg_color: 'Custom'
+            md_bg_color: 'orange'
+            pos_hint: {'center_x': .17, 'center_y': 0.95}
+            adaptive_size: True
+            on_release: root.back_to_login_page()
+            MDButtonIcon:
+                theme_icon_color: "Custom"
+                icon_color: 'black'
+                icon: "arrow-left-bold-outline"
+            MDButtonText:
+                text: "Назад"
+                theme_text_color: 'Custom'
+                text_color: 'black'
+
+        Image:
+            source: './Images/main_logo.png'
+            pos_hint: {'center_x': .5, 'center_y': .8}
+            size_hint: 0.7, 0.7
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: [0, 300, 0, 0]
+
+            ScrollView:
+
+                MDList:
+
+                    MDListItem:
+                        MDListItemLeadingIcon:
+                            icon: 'face-agent'
+                        MDListItemHeadlineText:
+                            text: 'Служба поддержки пользователей'
+                            theme_text_color: 'Custom'
+                            text_color: 'black'
+                            # bg_color: '#136a96'
+                        MDListItemSupportingText:
+                            text: f'[b]Телефон:[/b] 8 (800) 1-111-111'
+                        MDListItemSupportingText:
+                            text: f'[b]Электронная почта:[/b] info@lifer.ru'
+
+                    MDListItem:
+                        MDListItemLeadingIcon:
+                            icon: 'briefcase'
+                        MDListItemHeadlineText:
+                            text: 'Отдел кадров'
+                            theme_text_color: 'Custom'
+                            text_color: 'black'
+                        MDListItemSupportingText:
+                            text: f'[b]Электронная почта:[/b] vacancy@lifer.ru'
+
+                    MDListItem:
+                        MDListItemLeadingIcon:
+                            icon: 'shopping'
+                        MDListItemHeadlineText:
+                            text: 'Приемная и вопросы размещения рекламы'
+                        MDListItemSupportingText:
+                            text: f'[b]Телефон:[/b] 8 (843) 1-111-112'
+                        MDListItemSupportingText:
+                            text: f'[b]Электронная почта:[/b] market@lifer.ru'

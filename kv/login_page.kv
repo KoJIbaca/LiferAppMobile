@@ -1,0 +1,207 @@
+<LoginPage>
+
+    FloatLayout:
+        adaptive_size: True
+        canvas:
+            Color:
+                rgba: 255/255, 255/255, 255/255, 1
+            Rectangle:
+                #source: "./Images/main_background.png"
+                source: "./Images/main_background.jpg"
+                size: self.size
+                pos: self.pos
+
+
+        MDIconButton:
+            id: cfg
+            style: 'standard'
+            icon: 'cog'
+            theme_icon_color: "Custom"
+            pos_hint: {'center_x': .9, 'center_y': .95}
+            on_release: root.config_button_click()
+
+        Widget:
+            id: button_back
+            size_hint: .35, .04
+            pos_hint: {'center_x': .3, 'center_y': .7}
+            opacity: .5
+            canvas:
+                Color:
+                    rgba: 10/255, 67/255, 126/255, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+
+        MDButton:
+            id: auth_button
+            style: 'text'
+            pos_hint: {'center_x': .3, 'center_y': .7}
+            disabled: True
+            disabled_text_color: 1, 1, 1, 1
+            adaptive_size: True
+            on_release:
+                root.authorization_button(button_back)
+                root.authorization_form_transition(
+                [registration_widget, mail, reg_login, reg_password, registration_button],
+                [auth_widget, auth_login, auth_password, login_button, forgot_password])
+                auth_button.disabled = True
+                reg_button.disabled = False
+            MDButtonText:
+                text: '[b]Авторизация'
+                theme_font_size: "Custom"
+                theme_text_color: 'Custom'
+                text_color: 'black'
+                font_size: 20
+
+
+
+
+        MDButton:
+            id: reg_button
+            style: 'text'
+            pos_hint: {'center_x': .7, 'center_y': .7}
+            adaptive_size: True
+            disabled_color: 'white'
+            on_release:
+                root.registration_button(button_back)
+                root.registration_form_transition(
+                [auth_widget, auth_login, auth_password, login_button, forgot_password],
+                [registration_widget, mail, reg_login, reg_password, registration_button])
+                auth_button.disabled = False
+                reg_button.disabled = True
+            MDButtonText:
+                text: "[b]Регистрация"
+                theme_font_size: "Custom"
+                theme_text_color: 'Custom'
+                text_color: 'black'
+                font_size: 20
+
+
+        MDWidget:
+            id: auth_widget
+            size_hint: .8, .3
+            pos_hint: {'center_x': 0.5, 'center_y': 0.35}
+            md_bg_color: 'white'
+            radius: 20
+            canvas:
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+        MDTextField:
+            id: auth_login
+            mode: "filled"
+            size_hint: .7, None
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            MDTextFieldLeadingIcon:
+                icon: "account"
+            MDTextFieldHintText:
+                text: 'Логин'
+        MDTextField:
+            id: auth_password
+            mode: "filled"
+            password: True
+            size_hint: .7, None
+            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            MDTextFieldLeadingIcon:
+                icon: "key-variant"
+            MDTextFieldHintText:
+                text: 'Пароль'
+
+        MDButton:
+            id: login_button
+            style: "filled"
+            pos_hint: {'center_x': .5, 'center_y': .2}
+            adaptive_size: True
+            theme_bg_color: 'Custom'
+            md_bg_color: 'orange'
+            on_release:
+                root.login_button_press([registration_widget, mail, reg_login, reg_password, registration_button])
+            MDButtonIcon:
+                icon: "login"
+                theme_icon_color: 'Custom'
+                icon_color: 'black'
+            MDButtonText:
+                text: "[b]Войти"
+                theme_font_size: "Custom"
+                theme_text_color: 'Custom'
+                text_color: 'black'
+                font_size: 18
+
+
+        MDWidget:
+            id: registration_widget
+            size_hint: .8, .3
+            pos_hint: {'center_x': 1.5, 'center_y': 0.35}
+            md_bg_color: 'white'
+            radius: 20
+            opacity: 1
+            canvas:
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+        MDTextField:
+            id: reg_login
+            mode: "filled"
+            size_hint: .7, None
+            pos_hint: {'center_x': 1.5, 'center_y': .42}
+            opacity: 1
+            MDTextFieldLeadingIcon:
+                icon: "account"
+            MDTextFieldHintText:
+                text: 'Логин'
+        MDTextField:
+            id: mail
+            mode: "filled"
+            size_hint: .7, None
+            pos_hint: {'center_x': 1.5, 'center_y': .35}
+            opacity: 1
+            MDTextFieldLeadingIcon:
+                icon: "email-outline"
+            MDTextFieldHintText:
+                text: 'Электронная почта'
+        MDTextField:
+            id: reg_password
+            password: True
+            size_hint: .7, None
+            mode: "filled"
+            pos_hint: {'center_x': 1.5, 'center_y': .28}
+            opacity: 1
+            MDTextFieldLeadingIcon:
+                icon: "key-variant"
+            MDTextFieldHintText:
+                text: 'Пароль'
+        MDButton:
+            id: registration_button
+            theme_bg_color: 'Custom'
+            md_bg_color: 'orange'
+            pos_hint: {'center_x': 1.5, 'center_y': .2}
+            opacity: 1
+            MDButtonIcon:
+                icon: "account-plus-outline"
+                theme_icon_color: 'Custom'
+                icon_color: 'black'
+            MDButtonText:
+                text: "[b]Зарегистрироваться"
+                theme_font_size: "Custom"
+                theme_text_color: 'Custom'
+                text_color: 'black'
+                font_size: 18
+
+
+
+        Image:
+            source: './Images/main_logo.png'
+            size_hint: .6, .6
+            pos_hint: {'center_x': .5, 'center_y': .55}
+        MDButton:
+            id: forgot_password
+            style: 'text'
+            adaptive_width: True
+            pos_hint: {'center_x': .5, 'center_y': .12}
+            on_release:
+                root.forgot_password_button_click([registration_widget, mail, reg_login, reg_password, registration_button])
+            MDButtonText:
+                text: 'Забыли пароль?'
+                theme_text_color: 'Custom'
+                text_color: 247/255, 148/255, 7/255, 1
+

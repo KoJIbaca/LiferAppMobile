@@ -1,0 +1,84 @@
+<FeedbackPage>
+    FloatLayout:
+        orientation: 'vertical'
+        spacing: 20
+        canvas:
+            Rectangle:
+                source: "./images/feedback_background.jpg"
+                size: self.size
+                pos: self.pos
+
+        MDButton:
+            style: "filled"
+            radius: [10, 10, 10, 10]
+            pos_hint: {'center_x': .17, 'center_y': 0.95}
+            theme_bg_color: "Custom"
+            md_bg_color: 'orange'
+            on_release: root.back_to_login_page()
+            MDButtonIcon:
+                icon: "arrow-left-bold-outline"
+                theme_icon_color: 'Custom'
+                icon_color: 'black'
+            MDButtonText:
+                text: "Назад"
+                theme_text_color: 'Custom'
+                text_color: 'black'
+
+        Image:
+            source: './Images/main_logo.png'
+            pos_hint: {'center_x': .5, 'center_y': .8}
+            size_hint: 0.7, 0.7
+
+
+        Widget:
+            size_hint: .9, .6
+            pos_hint: {'center_x': .5, 'center_y': .35}
+            canvas:
+                Color:
+                    rgba: 1, 1, 1, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+
+        MDTextField:
+            id: reporter_name
+            mode: "outlined"
+            pos_hint: {'center_x': .5, 'center_y': .59}
+            size_hint: 0.8, None
+            MDTextFieldHintText:
+                text: 'ФИО'
+        MDTextField:
+            id: feedback_email
+            mode: "outlined"
+            pos_hint: {'center_x': .5, 'center_y': .51}
+            size_hint_x: 0.8
+            MDTextFieldHintText:
+                text: 'Электронная почта для ответа'
+        MDTextField:
+            id: feedback_theme
+            mode: "outlined"
+            pos_hint: {'center_x': .5, 'center_y': .43}
+            size_hint_x: 0.8
+            MDTextFieldHintText:
+                text: 'Тема запроса'
+        MDTextField:
+            id: feedback_text
+            mode: "outlined"
+            multiline: True
+            size_hint: .8, .3
+            pos_hint: {'center_x': .5, 'center_y': .24}
+            MDTextFieldHintText:
+                text: 'Краткое описание проблемы'
+
+
+        MDButton:
+            theme_bg_color: "Custom"
+            md_bg_color: 'orange'
+            radius: 10
+            pos_hint: {'center_x': .8, 'center_y': .05}
+            on_release:
+                root.send_report_button()
+            MDButtonText:
+                text: "Отправить"
+                theme_text_color: 'Custom'
+                text_color: 'black'
