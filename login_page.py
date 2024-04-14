@@ -11,7 +11,6 @@ Builder.load_file('kv/login_page.kv')
 
 
 class LoginPage(Screen):
-    # dialog = None
 
     def config_button_click(self):
         menu_items = [
@@ -24,22 +23,23 @@ class LoginPage(Screen):
         self.cfg_menu.open()
 
     def show_info_dialog(self):
-        MDDialog(
+        self.dialog = MDDialog(
             MDDialogHeadlineText(text='Информация о приложении'),
             MDDialogSupportingText(text="Название: Моё творчество\n" \
                  "Версия: pre-alpha\n" \
                  "Build: 0.0.01.24\n" \
                  "Автор: Максим Игрок aka Lonsdeilit\n" \
                  "Логотип от logturnal на Freepik"),
-            # MDDialogButtonContainer(
-            #     Widget(),
-            #     MDButton(
-            #         MDButtonText(text="Ok"),
-            #         style="text",
-            #         on_release=MDDialog.dismiss()
-            #     ),
-            # ),
-        ).open()
+            MDDialogButtonContainer(
+                Widget(),
+                MDButton(
+                    MDButtonText(text="Ok"),
+                    style="text",
+                    on_release=lambda *args: self.dialog.dismiss()
+                ),
+            ),
+        )
+        self.dialog.open()
         self.cfg_menu.dismiss()
 
     def feedback_page_open(self):

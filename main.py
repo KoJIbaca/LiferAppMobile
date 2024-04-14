@@ -7,6 +7,7 @@ from feedback_page import FeedbackPage
 from contacts_page import ContactsPage
 from profile_page import ProfilePage
 from friends_list_page import FriendsListPage
+from messages_page import MessagesPage
 
 
 screen_list = '''
@@ -30,7 +31,10 @@ ScreenManager:
         name: 'profile_page'   
     FriendsListPage:
         id: friends_list_page  
-        name: 'friends_list_page'  
+        name: 'friends_list_page'
+    MessagesPage:
+        id: messages_page
+        name: 'messages_page'  
 '''
 
 

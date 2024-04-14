@@ -34,7 +34,7 @@
                                 size: self.size
 
                     MDLabel:
-                        text: 'Имя'
+                        text: f'{(root.profile_info())[0]}'
                         bold: True
                         pos_hint: {'top': .62, 'left': .5}
                         font_style: 'Display'
@@ -44,9 +44,9 @@
                         padding: 10
                         adaptive_height: True
                     MDLabel:
-                        text: 'Фамилия'
+                        text: f'{(root.profile_info())[1]}'
                         bold: True
-                        pos_hint: {'top': .57, 'left': .5}
+                        pos_hint: {'top': .56, 'left': .5}
                         adaptive_height: True
                         padding: 10
                         font_style: 'Headline'
@@ -74,25 +74,25 @@
                         id: location_button
                         style: 'text'
                         adaptive_width: True
-                        pos_hint: {'center_x': .2, 'center_y': .5}
+                        pos_hint: {'center_x': .2, 'center_y': .48}
                         MDButtonIcon:
                             icon: 'map-marker'
                         MDButtonText:
-                            text: 'Россия, г. Москва'
+                            text: f'{(root.profile_info())[2]}'
                             theme_text_color: 'Custom'
                             text_color: 'grey'
 
 
                     MDButton:
                         style: 'text'
-                        pos_hint: {'center_x': .13, 'center_y': .47}
+                        pos_hint: {'center_x': .13, 'center_y': .45}
                         MDButtonText:
-                            text: f'Возраст: {root.age()}'
+                            text: f'{(root.profile_info())[3]}'
                             theme_text_color: 'Custom'
                             text_color: 'grey'
 
                     Widget:
-                        size_hint: .85, .13
+                        size_hint: .77, .08
                         pos_hint: {'center_x': .5, 'center_y': .38}
                         opacity: .7
                         canvas:
@@ -122,6 +122,7 @@
                         icon_color: 'black'
                         style: "standard"
                         pos_hint: {'center_x': .5, 'center_y': .38}
+                        on_release: root.messages_page_open()
 
                     MDFabButton:
                         id: news_button
@@ -161,6 +162,9 @@
                             text: "Моя страница"
 
                     MDNavigationDrawerItem:
+                        on_release:
+                            root.messages_page_open()
+                            nav_drawer.set_state(new_state='close')
 
                         MDNavigationDrawerItemLeadingIcon:
                             icon: "email"

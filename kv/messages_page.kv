@@ -1,0 +1,19 @@
+<MessagesPage>
+    MDScreen:
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 10
+            canvas:
+                Color:
+                    rgba: 255/255, 255/255, 255/255, 1
+                Rectangle:
+                    source: "./Images/main_background.jpg"
+                    size: self.size
+                    pos: self.pos
+
+            MDScrollView:
+                id:scroll
+
+            MDList:
+                id: messages_list

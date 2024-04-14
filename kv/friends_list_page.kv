@@ -4,7 +4,6 @@
         BoxLayout:
             orientation: 'vertical'
             spacing: 10
-            adaptive_size: True
             canvas:
                 Color:
                     rgba: 255/255, 255/255, 255/255, 1
@@ -12,14 +11,53 @@
                     source: "./Images/main_background.jpg"
                     size: self.size
                     pos: self.pos
-            MDFabButton:
-                id: back_button
-                icon: "arrow-left-bold-outline"
-                theme_icon_color: 'Custom'
-                icon_color: 'black'
-                style: "small"
-                pos_hint: {'center_x': .1, 'center_y': .5}
-                on_release: root.back_to_profile_page()
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: self.minimum_height
+                MDFabButton:
+                    id: back_button
+                    icon: "arrow-left-bold-outline"
+                    theme_icon_color: 'Custom'
+                    icon_color: 'black'
+                    style: "small"
+                    pos_hint: {'center_x': .1, 'center_y': .5}
+                    on_release: root.back_to_profile_page()
+
+                MDSegmentedButton:
+                    md_bg_color: self.theme_cls.backgroundColor
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    MDSegmentedButtonItem:
+                        id: friends
+                        active: True
+                        on_release: root.friends_list()
+                        MDSegmentButtonIcon:
+                            icon: "account-group"
+
+                    MDSegmentedButtonItem:
+                        id: favorite_friends
+                        on_release: root.favorite_button_click()
+                        MDSegmentButtonIcon:
+                            icon: "account-heart"
+
+                MDFabButton:
+                    id: search
+                    icon: "magnify"
+                    theme_icon_color: 'Custom'
+                    icon_color: 'black'
+                    style: "small"
+                    pos_hint: {'center_x': .8, 'center_y': .5}
+                    on_release: root.find_friends_button_click()
+
+                MDFabButton:
+                    id: add_friends
+                    icon: "account-multiple-plus"
+                    theme_icon_color: 'Custom'
+                    icon_color: 'black'
+                    style: "small"
+                    pos_hint: {'center_x': .9, 'center_y': .5}
+                    on_release: root.add_friends_dialog_open()
+
 
 
             MDScrollView:
@@ -27,3 +65,4 @@
 
                 MDList:
                     id: lists
+
